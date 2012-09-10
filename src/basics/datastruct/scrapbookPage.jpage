@@ -1,0 +1,8 @@
+
+java.util.Random ran = new java.util.Random();
+
+for (int i = 0; i < 10; i++)
+	System.out.print(ran.nextInt(10) + " ");
+
+ int maxInt = 2147483647;
+System.out.println(Integer.toBinaryString(maxInt).length());
