@@ -2,7 +2,15 @@ package basics.datastruct;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
+/**
+ * Just a regular, n-ary, not sorted generic tree, to educate myself 
+ * @author vedrana
+ *
+ * @param <T>
+ */
 public class Tree<T extends Comparable<T>> {
 	
 	private Node<T> root;
@@ -60,9 +68,56 @@ public class Tree<T extends Comparable<T>> {
 		System.out.print(node.value + " ");
 	}
 	
-	public class Node<S extends Comparable<S>> {
-		private S value;
-		private List<Node<S>> children;
+	public void BFS() {
+		Queue<Node<T>> queue = new PriorityQueue<Node<T>>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			Node<T> currentNode = queue.poll();
+			System.out.print(currentNode.value + " ");
+			List<Node<T>> kids = currentNode.children;
+			if (kids != null) {
+				for (Node<T> child : kids) {
+					queue.add(child);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Print tree in level order. The output contains space between
+	 * the numbers in the same level, and new line between different
+	 * levels
+	 */
+	public void levelOrderPrint() {
+		Queue<Node<T>> queue = new PriorityQueue<Node<T>>();
+		queue.add(root);
+		
+		int numOfElemsCurrent = 1; // the root
+		int numOfElemsNext = 0;
+		while(!queue.isEmpty()) {
+			Node<T> currentNode = queue.poll();
+			numOfElemsCurrent--;
+			List<Node<T>> kids = currentNode.children;
+			if (kids != null) {
+				for (Node<T> child : kids) {
+					queue.add(child);
+					numOfElemsNext++;
+				}
+			}
+			if (numOfElemsCurrent == 0){
+				System.out.print(currentNode.value + "\n");
+				numOfElemsCurrent = numOfElemsNext;
+				numOfElemsNext = 0;
+			} else {
+				System.out.print(currentNode.value + " ");
+			}
+		}
+		
+	}
+	
+	class Node<S extends Comparable<S>> implements Comparable<Node<S>> {
+		public S value;
+		public List<Node<S>> children;
 		
 		public Node(S value) {
 			this.value = value;
@@ -70,6 +125,11 @@ public class Tree<T extends Comparable<T>> {
 		
 		public boolean equals(Node<S> element) {
 			return value.equals(element.value);
+		}
+
+		@Override
+		public int compareTo(Node<S> arg0) {
+			return this.value.compareTo(arg0.value);
 		}
 	}
 	
@@ -86,7 +146,14 @@ public class Tree<T extends Comparable<T>> {
 		tree.addChild(200, tree.findNodeDFS(4));
 		tree.addChild(300, tree.findNodeDFS(4));
 		
+		System.out.println("DFS:");
 		tree.printDFS();		
+		
+		System.out.println("\nBFS:");
+		tree.BFS();
+		
+		System.out.println("\n\nLevels:");
+		tree.levelOrderPrint();
 	}
 
 }
