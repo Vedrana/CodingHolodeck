@@ -159,7 +159,5 @@ public class Tree<T extends Comparable<T>> {
 		newTree.addChild(10, newTree.findNodeDFS(9));
 		System.out.println("\nMore tree levels:");
 		newTree.levelOrderPrint();
-		
 	}
-
 }

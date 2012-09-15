@@ -180,7 +180,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		
 		System.out.println("\nLevels traversal:");
 		bst.printLevels();
-		
 	}
 }
 
