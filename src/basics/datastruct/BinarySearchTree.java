@@ -68,6 +68,42 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 	}
 	
+	public void traverseInorder() {
+		traverseInorder(root);
+	}
+	
+	private void traverseInorder(Node<T> node) {
+		if (node == null)
+			return;
+		traverseInorder(node.left);
+		System.out.print(node.value + " ");
+		traverseInorder(node.right);
+	}
+	
+	public void traversePreorder() {
+		traversePreorder(root);
+	}
+	
+	private void traversePreorder(Node<T> node) {
+		if (node == null)
+			return;
+		System.out.print(node.value + " ");
+		traversePreorder(node.left);
+		traversePreorder(node.right);
+	}
+	
+	public void traversePostorder() {
+		traversePostorder(root);
+	}
+	
+	private void traversePostorder(Node<T> node) {
+		if (node == null)
+			return;
+		traversePostorder(node.left);
+		traversePostorder(node.right);
+		System.out.print(node.value + " ");
+	}
+	
 	private class Node<S extends Comparable<S>> {
 		private S value;
 		private Node<S> left;
@@ -106,6 +142,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		System.out.println("Depth: " + bst.depth());
 		System.out.println("There " + (bst.contains(8)? "is" : "isn't") +" an 8 in the tree");
 		System.out.println("There " + (bst.contains(23)? "is" : "isn't") +" a 23 in the tree");
+		
+		System.out.println("\nInorder traversal: ");
+		bst.traverseInorder();
+		System.out.println("\nPreorder traversal: ");
+		bst.traversePreorder();
+		System.out.println("\nPostorder traversal: ");
+		bst.traversePostorder();
 	}
 }
 
