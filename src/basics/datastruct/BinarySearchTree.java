@@ -1,5 +1,8 @@
 package basics.datastruct;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree<T extends Comparable<T>> {
 
 	private Node<T> root;
@@ -104,7 +107,32 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		System.out.print(node.value + " ");
 	}
 	
-	private class Node<S extends Comparable<S>> {
+	public void printLevels() {
+		List<Node<T>> queue = new ArrayList<Node<T>>();
+		queue.add(root);
+		int currentLevel = 1;
+		int nextLevel = 0;
+		
+		while (!queue.isEmpty()) {
+			Node<T> currentNode = queue.remove(0);
+			currentLevel--;
+			System.out.print(currentNode.value + (currentLevel == 0 ? "\n" : " "));
+			if (currentNode.left != null) {
+				queue.add(currentNode.left);
+				nextLevel++;
+			}
+			if (currentNode.right != null) {
+				queue.add(currentNode.right);
+				nextLevel++;
+			}
+			if (currentLevel == 0) {
+				currentLevel = nextLevel;
+				nextLevel = 0;
+			}
+		}
+	}
+	
+	private class Node<S extends Comparable<S>>{
 		private S value;
 		private Node<S> left;
 		private Node<S> right;
@@ -143,12 +171,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		System.out.println("There " + (bst.contains(8)? "is" : "isn't") +" an 8 in the tree");
 		System.out.println("There " + (bst.contains(23)? "is" : "isn't") +" a 23 in the tree");
 		
-		System.out.println("\nInorder traversal: ");
+		System.out.println("\nInorder traversal:");
 		bst.traverseInorder();
-		System.out.println("\nPreorder traversal: ");
+		System.out.println("\nPreorder traversal:");
 		bst.traversePreorder();
-		System.out.println("\nPostorder traversal: ");
+		System.out.println("\nPostorder traversal:");
 		bst.traversePostorder();
+		
+		System.out.println("\nLevels traversal:");
+		bst.printLevels();
+		
 	}
 }
 
