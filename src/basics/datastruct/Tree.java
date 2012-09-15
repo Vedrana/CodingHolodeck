@@ -2,8 +2,6 @@ package basics.datastruct;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 /**
  * Just a regular, n-ary, not sorted generic tree, to educate myself 
@@ -69,10 +67,10 @@ public class Tree<T extends Comparable<T>> {
 	}
 	
 	public void BFS() {
-		Queue<Node<T>> queue = new PriorityQueue<Node<T>>();
+		List<Node<T>> queue = new ArrayList<Node<T>>();
 		queue.add(root);
 		while (!queue.isEmpty()) {
-			Node<T> currentNode = queue.poll();
+			Node<T> currentNode = queue.remove(0);
 			System.out.print(currentNode.value + " ");
 			List<Node<T>> kids = currentNode.children;
 			if (kids != null) {
@@ -89,13 +87,13 @@ public class Tree<T extends Comparable<T>> {
 	 * levels
 	 */
 	public void levelOrderPrint() {
-		Queue<Node<T>> queue = new PriorityQueue<Node<T>>();
+		List<Node<T>> queue = new ArrayList<Node<T>>();
 		queue.add(root);
 		
 		int numOfElemsCurrent = 1; // the root
 		int numOfElemsNext = 0;
 		while(!queue.isEmpty()) {
-			Node<T> currentNode = queue.poll();
+			Node<T> currentNode = queue.remove(0);
 			numOfElemsCurrent--;
 			List<Node<T>> kids = currentNode.children;
 			if (kids != null) {
@@ -115,7 +113,7 @@ public class Tree<T extends Comparable<T>> {
 		
 	}
 	
-	class Node<S extends Comparable<S>> implements Comparable<Node<S>> {
+	class Node<S extends Comparable<S>>{
 		public S value;
 		public List<Node<S>> children;
 		
@@ -125,11 +123,6 @@ public class Tree<T extends Comparable<T>> {
 		
 		public boolean equals(Node<S> element) {
 			return value.equals(element.value);
-		}
-
-		@Override
-		public int compareTo(Node<S> arg0) {
-			return this.value.compareTo(arg0.value);
 		}
 	}
 	
@@ -154,6 +147,19 @@ public class Tree<T extends Comparable<T>> {
 		
 		System.out.println("\n\nLevels:");
 		tree.levelOrderPrint();
+		
+		Tree<Integer> newTree = new Tree<Integer>(5);
+		newTree.addChild(3, newTree.findNodeDFS(5));
+		newTree.addChild(2, newTree.findNodeDFS(3));
+		newTree.addChild(1, newTree.findNodeDFS(2));
+		newTree.addChild(7, newTree.findNodeDFS(5));
+		newTree.addChild(6, newTree.findNodeDFS(7));
+		newTree.addChild(8, newTree.findNodeDFS(7));
+		newTree.addChild(9, newTree.findNodeDFS(8));
+		newTree.addChild(10, newTree.findNodeDFS(9));
+		System.out.println("\nMore tree levels:");
+		newTree.levelOrderPrint();
+		
 	}
 
 }
