@@ -132,6 +132,28 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 	}
 	
+	public void trim(T min, T max) {
+		root = trim(root, min, max);
+	}
+	
+	/**
+	 * Trim the tree such that all the numbers in the new tree are between min and max, inclusive
+	 */
+	private Node<T> trim(Node<T> node, T min, T max) {
+		if (node == null)
+			return null;
+		node.left = trim(node.left, min, max);
+		node.right = trim(node.right, min, max);
+		if (node.value.compareTo(min) >= 0 && node.value.compareTo(max) <= 0)
+			return node;
+		else if (node.value.compareTo(min) < 0)
+				return node.right;
+		else if (node.value.compareTo(max) > 0)
+				return node.left;
+		else
+			return null;
+	}
+	
 	private class Node<S extends Comparable<S>>{
 		private S value;
 		private Node<S> left;
@@ -164,9 +186,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			bst.add(8);
 			bst.add(9);
 			bst.add(10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (IllegalArgumentException e) {}
+		
 		System.out.println("Depth: " + bst.depth());
 		System.out.println("There " + (bst.contains(8)? "is" : "isn't") +" an 8 in the tree");
 		System.out.println("There " + (bst.contains(23)? "is" : "isn't") +" a 23 in the tree");
@@ -180,6 +201,25 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		
 		System.out.println("\nLevels traversal:");
 		bst.printLevels();
+		
+		bst = new BinarySearchTree<Integer>();
+		try {
+			bst.add(8);
+			bst.add(3);
+			bst.add(10);
+			bst.add(1);
+			bst.add(6);
+			bst.add(4);
+			bst.add(7);
+			bst.add(14);
+			bst.add(13);
+		} catch (IllegalArgumentException e) {}
+		System.out.println("\nNew tree, levels traversal:");
+		bst.printLevels();
+		bst.trim(5, 13);
+		System.out.println("\nTrimmed tree, levels traversal:");
+		bst.printLevels();
+
 	}
 }
 
