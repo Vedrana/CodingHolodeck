@@ -22,6 +22,7 @@ public class NumbersWithAGivenSum {
 				right--;
 			}
 		}
+		System.out.println("No two numbers exist that sum to " + sum + ".");
 		return false;
 	}
 	
@@ -30,6 +31,8 @@ public class NumbersWithAGivenSum {
 		int[] array = new int[] {1, 2, 4, 7, 11, 15};
 		int wantedSum = 15;
 		givenSum.findNumbers(array, wantedSum);
+		int nonexistantSum = 20;
+		givenSum.findNumbers(array, nonexistantSum);
 	}
 
 }
