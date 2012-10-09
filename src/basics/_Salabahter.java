@@ -52,8 +52,8 @@ public class _Salabahter {
 		String subStr = s.substring(1);
 		String subStr2 = s.substring(1, 3);
 		
-		char firstChar = s.charAt(0);
-		String firstCharAsString = Character.toString(firstChar);
+		Character firstChar = s.charAt(0);
+		String firstCharAsString = firstChar.toString();
 		
 		int lastIndex = s.lastIndexOf(firstChar);
 		lastIndex = s.lastIndexOf("b");

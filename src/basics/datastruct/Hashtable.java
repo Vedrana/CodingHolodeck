@@ -74,7 +74,7 @@ public class Hashtable {
 			items = new LinkedList<Item>();
 		}
 		
-		public LinkedList <Item> getItems() {
+		public LinkedList <Item> getItems() { // Just list
 			return items;
 		}
 	}

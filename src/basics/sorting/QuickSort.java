@@ -27,7 +27,7 @@ public class QuickSort {
 		if (left < right) { // the list has more than 2 elements
 			Random ran = new Random();
 			int pivotIndex = left + ran.nextInt(right-left+1);
-			int newPivotIndex = partition(array, 0, array.length - 1, pivotIndex);			
+			int newPivotIndex = partition(array, left, right, pivotIndex);			
 			// recursively sort elements smaller and greater than pivot element
 			quicksort(array, left, newPivotIndex - 1);
 			quicksort(array, newPivotIndex + 1, right);
