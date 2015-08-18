@@ -11,42 +11,42 @@ import java.util.Stack;
 // http://www.ardendertat.com/2011/10/31/programming-interview-questions-12-reverse-words-in-a-string/
 public class ReverseWordsInString {
 
-    public String reverseWords(String sentence) {
-        Stack<String> words = new Stack<String>();
-        int i = 0;
-        while (i < sentence.length()) {
-            if (sentence.charAt(i) != ' ') {
-                int start = i++;
-                while (i < sentence.length() && sentence.charAt(i) != ' ') {
-                    i++;
-                }
-                words.add(sentence.substring(start, i));
-            }
-            i++;
+  public String reverseWords(String sentence) {
+    Stack<String> words = new Stack<String>();
+    int i = 0;
+    while (i < sentence.length()) {
+      if (sentence.charAt(i) != ' ') {
+        int start = i++;
+        while (i < sentence.length() && sentence.charAt(i) != ' ') {
+          i++;
         }
-        if (words.isEmpty())
-            return "";
-
-        StringBuilder reversed = new StringBuilder();
-        reversed.append(words.pop());
-        while (!words.isEmpty()) {
-            reversed.append(" " + words.pop());
-        }
-        return reversed.toString();
+        words.add(sentence.substring(start, i));
+      }
+      i++;
     }
+    if (words.isEmpty())
+      return "";
 
-    public static void main(String[] args) {
-        ReverseWordsInString rev = new ReverseWordsInString();
-
-        String sentence = " Interviews are     awesome!";
-        System.out.println(sentence + " : " + rev.reverseWords(sentence));
-
-        sentence = "";
-        System.out.println(sentence + " : " + rev.reverseWords(sentence));
-
-        sentence = "oneWord";
-        System.out.println(sentence + " : " + rev.reverseWords(sentence));
-
+    StringBuilder reversed = new StringBuilder();
+    reversed.append(words.pop());
+    while (!words.isEmpty()) {
+      reversed.append(" " + words.pop());
     }
+    return reversed.toString();
+  }
+
+  public static void main(String[] args) {
+    ReverseWordsInString rev = new ReverseWordsInString();
+
+    String sentence = " Interviews are     awesome!";
+    System.out.println(sentence + " : " + rev.reverseWords(sentence));
+
+    sentence = "";
+    System.out.println(sentence + " : " + rev.reverseWords(sentence));
+
+    sentence = "oneWord";
+    System.out.println(sentence + " : " + rev.reverseWords(sentence));
+
+  }
 
 }

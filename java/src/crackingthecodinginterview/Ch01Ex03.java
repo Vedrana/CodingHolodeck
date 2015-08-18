@@ -8,26 +8,26 @@ package crackingthecodinginterview;
  */
 public class Ch01Ex03 {
 
-    public static String removeDuplicates(String s) {
-        StringBuilder sb = new StringBuilder();
-        // 256 for extended ASCII
-        boolean[] charHit = new boolean[256];
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (!charHit[c]) {
-                charHit[c] = true;
-                sb.append(c);
-            }
-        }
-        return sb.toString();
+  public static String removeDuplicates(String s) {
+    StringBuilder sb = new StringBuilder();
+    // 256 for extended ASCII
+    boolean[] charHit = new boolean[256];
+    for (int i = 0; i < s.length(); i++) {
+      char c = s.charAt(i);
+      if (!charHit[c]) {
+        charHit[c] = true;
+        sb.append(c);
+      }
     }
+    return sb.toString();
+  }
 
-    public static void main(String[] args) {
-        System.out.println("blabla --> " + removeDuplicates("blabla"));
-        System.out.println("abcdefgaaa --> " + removeDuplicates("abcdefgaaa"));
-        System.out.println("aaaaa --> " + removeDuplicates("aaaaa"));
-        System.out.println(" --> " + removeDuplicates(""));
+  public static void main(String[] args) {
+    System.out.println("blabla --> " + removeDuplicates("blabla"));
+    System.out.println("abcdefgaaa --> " + removeDuplicates("abcdefgaaa"));
+    System.out.println("aaaaa --> " + removeDuplicates("aaaaa"));
+    System.out.println(" --> " + removeDuplicates(""));
 
-    }
+  }
 
 }

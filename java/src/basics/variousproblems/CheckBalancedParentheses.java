@@ -13,40 +13,40 @@ import java.util.Stack;
 // http://www.ardendertat.com/2011/11/08/programming-interview-questions-14-check-balanced-parentheses/
 public class CheckBalancedParentheses {
 
-    private Stack<String> parenthStack;
+  private Stack<String> parenthStack;
 
-    public CheckBalancedParentheses() {
-        this.parenthStack = new Stack<String>();
-    }
+  public CheckBalancedParentheses() {
+    this.parenthStack = new Stack<String>();
+  }
 
-    public boolean check(String parentheses) {
-        parenthStack.clear();
-        for (int i = 0; i < parentheses.length(); i++) {
-            String p = parentheses.substring(i, i + 1);
-            if (p.equals("(") || p.equals("[") || p.equals("{")) {
-                parenthStack.add(parentheses.substring(i, i + 1));
-            } else {
-                if (parenthStack.isEmpty())
-                    return false;
-                String stackP = parenthStack.pop();
-                if ((p.equals(")") && !stackP.equals("(")) ||
-                        (p.equals("]") && !stackP.equals("[")) ||
-                        (p.equals("}") && !stackP.equals("{"))) {
-                    return false;
-                }
-            }
+  public boolean check(String parentheses) {
+    parenthStack.clear();
+    for (int i = 0; i < parentheses.length(); i++) {
+      String p = parentheses.substring(i, i + 1);
+      if (p.equals("(") || p.equals("[") || p.equals("{")) {
+        parenthStack.add(parentheses.substring(i, i + 1));
+      } else {
+        if (parenthStack.isEmpty())
+          return false;
+        String stackP = parenthStack.pop();
+        if ((p.equals(")") && !stackP.equals("(")) ||
+            (p.equals("]") && !stackP.equals("[")) ||
+            (p.equals("}") && !stackP.equals("{"))) {
+          return false;
         }
-        if (!parenthStack.isEmpty())
-            return false;
-        return true;
+      }
     }
+    if (!parenthStack.isEmpty())
+      return false;
+    return true;
+  }
 
-    public static void main(String[] args) {
-        CheckBalancedParentheses checkParenth = new CheckBalancedParentheses();
-        System.out.println(checkParenth.check("[{]}")); // should be false
-        System.out.println(checkParenth.check("([])")); // should be true
-        System.out.println(checkParenth.check("([)]")); // should be false
-        System.out.println(checkParenth.check("((((())))))")); // should be false
-        System.out.println(checkParenth.check("(((({})))")); // should be false
-    }
+  public static void main(String[] args) {
+    CheckBalancedParentheses checkParenth = new CheckBalancedParentheses();
+    System.out.println(checkParenth.check("[{]}")); // should be false
+    System.out.println(checkParenth.check("([])")); // should be true
+    System.out.println(checkParenth.check("([)]")); // should be false
+    System.out.println(checkParenth.check("((((())))))")); // should be false
+    System.out.println(checkParenth.check("(((({})))")); // should be false
+  }
 }

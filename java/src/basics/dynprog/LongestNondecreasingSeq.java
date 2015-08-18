@@ -11,33 +11,33 @@ package basics.dynprog;
 public class LongestNondecreasingSeq {
 
 
-    public static int findLongestNondecreasingSeqLength(int[] sequence) {
+  public static int findLongestNondecreasingSeqLength(int[] sequence) {
 
 		/* A state i is the longest non-decreasing sequence which has its last number A[i].
          * This state carries only data about the length of this sequence.
 		 */
-        int[] nondecrSeq = new int[sequence.length];
-        nondecrSeq[0] = 1;
+    int[] nondecrSeq = new int[sequence.length];
+    nondecrSeq[0] = 1;
 
-        int longestNondecrSeqLen = 0;
+    int longestNondecrSeqLen = 0;
 
-        for (int i = 1; i < sequence.length; i++) {
-            if (sequence[i] >= sequence[i - 1]) {
-                nondecrSeq[i] = nondecrSeq[i - 1] + 1;
-            } else {
-                nondecrSeq[i] = 1;
-            }
-            if (nondecrSeq[i] > longestNondecrSeqLen) {
-                longestNondecrSeqLen = nondecrSeq[i];
-            }
-        }
-
-        return longestNondecrSeqLen;
+    for (int i = 1; i < sequence.length; i++) {
+      if (sequence[i] >= sequence[i - 1]) {
+        nondecrSeq[i] = nondecrSeq[i - 1] + 1;
+      } else {
+        nondecrSeq[i] = 1;
+      }
+      if (nondecrSeq[i] > longestNondecrSeqLen) {
+        longestNondecrSeqLen = nondecrSeq[i];
+      }
     }
 
-    public static void main(String[] args) {
-        System.out.println(findLongestNondecreasingSeqLength(new int[]{5, 3, 4, 8, 6, 7}));
+    return longestNondecrSeqLen;
+  }
 
-    }
+  public static void main(String[] args) {
+    System.out.println(findLongestNondecreasingSeqLength(new int[]{5, 3, 4, 8, 6, 7}));
+
+  }
 
 }

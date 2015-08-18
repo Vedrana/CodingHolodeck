@@ -11,29 +11,29 @@ package basics.dynprog;
  */
 public class Coins {
 
-    public static int findMinNumOfCoinsForSum(int[] coins, int Sum) {
-        int[] minNumOfCoinsForSum = new int[Sum + 1];
-        minNumOfCoinsForSum[0] = 0;
-        for (int i = 1; i < minNumOfCoinsForSum.length; i++) {
-            minNumOfCoinsForSum[i] = 1000; // Should be positive infinity :)
-        }
-
-        for (int s = 1; s <= Sum; s++) {
-            for (int c = 0; c < coins.length; c++) {
-                if (coins[c] <= s && minNumOfCoinsForSum[s - coins[c]] + 1 < minNumOfCoinsForSum[s]) {
-                    minNumOfCoinsForSum[s] = minNumOfCoinsForSum[s - coins[c]] + 1;
-                }
-            }
-        }
-        return minNumOfCoinsForSum[Sum];
+  public static int findMinNumOfCoinsForSum(int[] coins, int Sum) {
+    int[] minNumOfCoinsForSum = new int[Sum + 1];
+    minNumOfCoinsForSum[0] = 0;
+    for (int i = 1; i < minNumOfCoinsForSum.length; i++) {
+      minNumOfCoinsForSum[i] = 1000; // Should be positive infinity :)
     }
 
-    public static void main(String[] args) {
-        System.out.println("Coins: 1, 3, 5");
-        System.out.println("Sum:\tNumber of coins used:");
-        for (int sum = 0; sum <= 11; sum++) {
-            int minNumOfCoinsForSum = findMinNumOfCoinsForSum(new int[]{1, 3, 5}, sum);
-            System.out.println(sum + "\t" + minNumOfCoinsForSum);
+    for (int s = 1; s <= Sum; s++) {
+      for (int c = 0; c < coins.length; c++) {
+        if (coins[c] <= s && minNumOfCoinsForSum[s - coins[c]] + 1 < minNumOfCoinsForSum[s]) {
+          minNumOfCoinsForSum[s] = minNumOfCoinsForSum[s - coins[c]] + 1;
         }
+      }
     }
+    return minNumOfCoinsForSum[Sum];
+  }
+
+  public static void main(String[] args) {
+    System.out.println("Coins: 1, 3, 5");
+    System.out.println("Sum:\tNumber of coins used:");
+    for (int sum = 0; sum <= 11; sum++) {
+      int minNumOfCoinsForSum = findMinNumOfCoinsForSum(new int[]{1, 3, 5}, sum);
+      System.out.println(sum + "\t" + minNumOfCoinsForSum);
+    }
+  }
 }
