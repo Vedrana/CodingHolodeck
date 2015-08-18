@@ -18,7 +18,6 @@ public class Bitwise {
 
     System.out.println(howManyOneBits(a));
     System.out.println(howManyOneBits(b));
-
   }
 
 }

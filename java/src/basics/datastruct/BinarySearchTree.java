@@ -7,9 +7,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
   private Node<T> root;
 
-  public BinarySearchTree() {
-  }
-
   public void add(T element) throws IllegalArgumentException {
     Node<T> elementNode = new Node<T>(element);
     if (root == null) {
@@ -216,14 +213,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
       bst.add(7);
       bst.add(14);
       bst.add(13);
-    } catch (IllegalArgumentException e) {
-    }
+    } catch (IllegalArgumentException e) { }
     System.out.println("\nNew tree, levels traversal:");
     bst.printLevels();
     bst.trim(5, 13);
     System.out.println("\nTrimmed tree, levels traversal:");
     bst.printLevels();
-
   }
 }
 

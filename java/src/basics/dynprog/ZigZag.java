@@ -127,6 +127,5 @@ public class ZigZag {
         810, 704, 52, 861, 49, 640, 370, 908, 477, 245, 413, 109, 659, 401, 483,
         308, 609, 120, 249, 22, 176, 279, 23, 22, 617, 462, 459, 244}));
     System.out.println(sequence.toString() + " : " + zigZag(sequence));
-
   }
 }

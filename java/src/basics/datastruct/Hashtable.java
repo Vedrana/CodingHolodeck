@@ -90,7 +90,6 @@ public class Hashtable {
     System.out.println(h.get("3"));
     System.out.println(h.get("1"));
     System.out.println(h.get("5"));
-
   }
 }
 

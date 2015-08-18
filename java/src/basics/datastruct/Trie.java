@@ -116,7 +116,6 @@ public class Trie {
     System.out.println("authorization: " + trie.contains("authorization"));
     System.out.println("author: " + trie.contains("author"));
     System.out.println("nyanyan: " + trie.contains("nyanyan"));
-
   }
 
 }
